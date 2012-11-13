@@ -1,3 +1,6 @@
+/env
+/.codeintl
+
 *.py[cod]
 
 # C extensions
