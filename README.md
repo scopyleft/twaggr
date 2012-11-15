@@ -10,13 +10,36 @@ You have a company, an association or a user group account and want it to retwee
 
 ## Installation
 
-TODO
+```
+$ git clone https://github.com/scopyleft/twaggr.git && cd twaggr
+$ virtualenv --no-site-packages `pwd`/env/bin
+$ source env/bin/activate
+$ pip install requirements.txt
+```
 
 ## Usage
 
-TODO: explain how to create a twitter app
+First you'll have to register a new twitter app at [Twitter Dev Center](https://dev.twitter.com/apps/new). This will get you a `CONSUMER_KEY` and `CONSUMER_SECRET`.
 
-Sample configuration file in `~/.twaggr.yaml`:
+__Note:__ Please set the app to ask for read + write access.
+
+Then you'll need to authorize the app you've just created for your twitter user:
+
+```
+>>> import tweepy
+>>> auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+>>> auth.get_authorization_url()
+```
+
+That last command will print an authorization url you'll have to open in your Web browser. Copy the PIN number provides once you've authorized the app to access your twitter account, and get back to your Python prompt:
+
+```
+>>> auth.get_access_token('<paste PIN number here>')
+>>> auth.access_token.key    # that will be you ACCESS_TOKEN
+>>> auth.access_token.secret # that will be you ACCESS_SECRET
+```
+
+You can now create the twaggr configuration file in `~/.twaggr.yaml`:
 
 ```yaml
 auth:
@@ -35,7 +58,13 @@ Run:
 $ python twaggr.py
 ```
 
-TODO: sample crontab entry
+Now you may add some [crontab](http://en.wikipedia.org/wiki/Crontab) entry:
+
+```
+*/5 * * * * /home/user/twaggr/env/bin/python /home/user/twaggr/twaggr.py >> ~/twaggr/twaggr.log
+```
+
+That will run the script every five minutes and log the output in a `~/twaggr/twaggr.log` file.
 
 ## Authors
 
