@@ -31,12 +31,12 @@ Then you'll need to authorize the app you've just created for your twitter user:
 >>> auth.get_authorization_url()
 ```
 
-That last command will print an authorization url you'll have to open in your Web browser. Copy the PIN number provides once you've authorized the app to access your twitter account, and get back to your Python prompt:
+That last command will print an authorization url you'll have to open in your Web browser. Copy the PIN number shown once you've authorized the app to access your twitter account, and get back to your Python prompt:
 
 ```
 >>> auth.get_access_token('<paste PIN number here>')
->>> auth.access_token.key    # that will be you ACCESS_TOKEN
->>> auth.access_token.secret # that will be you ACCESS_SECRET
+>>> auth.access_token.key    # that will be your ACCESS_TOKEN
+>>> auth.access_token.secret # that will be your ACCESS_SECRET
 ```
 
 You can now create the twaggr configuration file in `~/.twaggr.yaml`:
