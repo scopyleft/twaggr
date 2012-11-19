@@ -40,5 +40,5 @@ except IndexError:
     raise RuntimeError(u'Members list not found: %s' % MEMBERS_LIST)
 
 for tweet in filter(to_be_retweeted, crew.timeline(count=100)):
-    print u"Found a tweet to retweet: %s" % tweet.text
+    print u"Found a tweet to retweet: %s" % unicode(tweet.text)
     tweet.retweet()
